@@ -120,6 +120,7 @@ class AddressController extends Controller
         return $cities;
     }
 
+
     public function set_default($id){
         foreach (Auth::user()->addresses as $key => $address) {
             $address->set_default = 0;
