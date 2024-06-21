@@ -1,0 +1,82 @@
+//----------------------------------------------------//
+// FORMS                                              //
+//----------------------------------------------------//
+
+// Input
+//----------------------------------------------------//
+input[type=text],
+input[type=password], 
+input[type=date], 
+input[type=datetime], 
+input[type=email], 
+input[type=number], 
+input[type=search], 
+input[type=tel], 
+input[type=time], 
+input[type=url],
+select,
+textarea {
+	width: 100%;
+	border-bottom: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	cursor: text;
+	padding: 5px;
+  border-radius: 0;
+}
+
+// Form elements
+//----------------------------------------------------//
+.form-line {
+
+}
+.wrap-input {
+
+}
+.wrap-select {
+
+}
+.wrap-label {
+
+}
+
+// Custom select
+//----------------------------------------------------//
+button.select,
+div.select {
+	color: $mainFontColor;
+	line-height: $mainLineHeight;
+}
+button.select {
+	.ui-multiselect-inner {
+		position: relative;
+		padding: 5px;
+	}
+	.ui-multiselect-icon {
+		content: '';
+		width: 0;
+		height: 0;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 5px solid #000;
+		position: absolute;
+		right: 5px;
+		top: 50%;
+		margin: -5px 0 0 0;
+	}
+}
+div.select {
+	.ui-multiselect-menu-inner {
+		label {
+			padding: 5px;
+			&.ui-state-active {
+
+			}
+			&.ui-state-hover {
+				background-color: blue;
+				color: #fff;
+			}
+		}
+	}
+}

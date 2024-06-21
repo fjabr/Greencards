@@ -1,0 +1,352 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Coupon;
+use App\Models\CouponUsage;
+use http\Exception\InvalidArgumentException;
+use Illuminate\Http\Request;
+use App\Models\Payment;
+use App\Models\Shop;
+use App\Models\User;
+use Auth;
+use Illuminate\Support\Facades\DB;
+
+
+class PaymentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // public function index()
+    // {
+    //     $payments = Payment::where('seller_id', Auth::user()->seller->id)->paginate(9);
+    //     return view('seller.payment_history', compact('payments'));
+    // }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function payment_histories(Request $request)
+    {
+        $payments = Payment::orderBy('created_at', 'desc')->paginate(15);
+        return view('backend.sellers.payment_histories.index', compact('payments'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $user = User::find(decrypt($id));
+        $payments = Payment::where('seller_id', $user->id)->orderBy('created_at', 'desc')->get();
+        if($payments->count() > 0){
+            return view('backend.sellers.payment', compact('payments', 'user'));
+        }
+        flash(translate('No payment history available for this seller'))->warning();
+        return back();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    private function apply_coupon_code($amount, $couponCode, $user_id) {
+        $coupon = Coupon::where('code', $couponCode)->first();
+        if ($coupon == null) return ['success'=>false, 'message'=>'Invalid coupon'];
+
+        if (strtotime(date('d-m-Y')) < $coupon->start_date || strtotime(date('d-m-Y')) > $coupon->end_date) {
+            return ['success'=>false, 'message'=>'Coupon expired'];
+        }
+
+        $couponSubscription = CouponUsage::where('user_id', $user_id)->where('coupon_id', $coupon->id)->first();
+        if ($couponSubscription != null) {
+            return ['success'=>false, 'message'=>'You already used this coupon!'];
+        }
+
+        $coupon_details = json_decode($coupon->details);
+        $coupon_discount = 0;
+        if ($coupon->discount_type == 'percent') {
+            $coupon_discount = ($amount * $coupon->discount) / 100;
+            if ($coupon_discount > $coupon_details->max_discount) {
+                $coupon_discount = $coupon_details->max_discount;
+            }
+        } elseif ($coupon->discount_type == 'amount') {
+            $coupon_discount = $coupon->discount;
+        }
+
+        return ['success'=>true, 'message'=>'Coupon has been applied', 'discount'=>$coupon_discount];
+    }
+
+    public function subscriptionPayment () {
+        $amount = !empty($_GET['amount']) ? $_GET['amount'] : null;
+        $qr_code = isset($_GET['qr_code']) ? $_GET['qr_code'] : null;
+        $vat_total = isset($_GET['vat_total']) ? $_GET['vat_total'] : null;
+        $date_qr = isset($_GET['date_qr']) ? $_GET['date_qr'] : null;
+        $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+        $package_id = isset($_GET['package_id']) ? $_GET['package_id'] : null;
+        $coupon = isset($_GET['coupon']) ? $_GET['coupon'] : null;
+        $action = isset($_GET['action']) ? $_GET['action'] : null;
+
+        if (!$amount || !$qr_code || !$vat_total || !$date_qr || !$user_id || !$package_id || ($action && $action !== "renew")) {
+            return abort(400, 'Invalid arguments received.');
+        }
+
+        if(env("HYPERPAY_ACTIVE") != "on") {
+            return view('frontend.payment.subscription_payment', [
+                'paymentResponse' => [
+                    'message' => 'Payment online not active for now, please try again',
+                    'messageAr' => "الدفع عبر الإنترنت غير نشط في الوقت الحالي ، يرجى المحاولة مرة أخرى",
+                    "success" => false,
+                    "exist" => false,
+                ]
+            ]);
+        }
+
+        $customer = null;
+        if (!$action) {
+            $customer = DB::table('users')->where('id', $user_id)->where('customer_package_id', "!=" , null)->first();
+        }
+
+        if ($customer != null) {
+            return view('frontend.payment.subscription_payment', [
+                'paymentResponse' => [
+                    'message' => 'You have already pay.',
+                    'messageAr' => "لقد دفعت مسباقا",
+                    "success" => false,
+                    "exist" => true,
+                ]
+            ]);
+        }
+
+        $payment_amount = $amount;
+        if(!empty($coupon)){
+            $discount_func = $this->apply_coupon_code($amount, $coupon, $user_id);
+            if (!$discount_func['success']) {
+                return view('frontend.payment.subscription_payment', [
+                    'paymentResponse' => [
+                        'message' => $discount_func['message'],
+                        'messageAr' => "",
+                        "success" => $discount_func['success'],
+                        "exist" => true,
+                    ]
+                ]);
+            }
+
+            $payment_amount = $payment_amount - $discount_func["coupon_discount"];
+        }
+
+        $queryParams = [
+            'amount' => $payment_amount,
+            'qr_code' => $qr_code,
+            'vat_total' => $vat_total,
+            'date_qr' => $date_qr,
+            'user_id' => $user_id,
+            'package_id' => $package_id,
+            'coupon' => $coupon,
+            'action' => $action
+        ];
+
+        return view('frontend.payment.subscription_payment', [
+            'paymentResponse' => [
+                'success'=>true,
+                'amount' => $payment_amount,
+                'query'=>http_build_query($queryParams)
+            ],
+        ]);
+    }
+
+    public function subscriptionCheckout ($id) {
+        $params = [
+            'amount' => $_GET['amount'],
+            'qr_code' => $_GET['qr_code'],
+            'vat_total' => $_GET['vat_total'],
+            'date_qr' => $_GET['date_qr'],
+            'user_id' => $_GET['user_id'],
+            'package_id' => $_GET['package_id'],
+            'coupon' => !empty($_GET['coupon']) ? $_GET['coupon'] : null,
+            'action' => !empty($_GET['action']) ? $_GET['action'] : null,
+        ];
+
+        return view('frontend.payment.subscription_checkout', [
+            'id'=>$id,
+            'query'=>http_build_query($params)
+        ]);
+    }
+
+    public function subscriptionComplete () {
+        $resourcePath = urldecode($_GET['resourcePath']);
+        $params = [
+            'amount' => $_GET['amount'],
+            'qr_code' => $_GET['qr_code'],
+            'vat_total' => $_GET['vat_total'],
+            'date_qr' => $_GET['date_qr'],
+            'user_id' => $_GET['user_id'],
+            'package_id' => $_GET['package_id'],
+            'coupon' => !empty($_GET['coupon']) ? $_GET['coupon'] : null,
+            'action' => !empty($_GET['action']) ? $_GET['action'] : null
+        ];
+
+        $baseUrl = env("HYPERPAY_MODE_TEST") == "on" ?
+            "https://eu-test.oppwa.com/".$resourcePath."?entityId=".env('HYPERPAY_ID', '8ac7a4ca7d97962b017d997e2b8d06e4'):
+            "https://oppwa.com/".$resourcePath."?entityId=".env('HYPERPAY_ID');
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $baseUrl);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:Bearer '.env("HYPERPAY_TOKEN", "OGFjN2E0Y2E3ZDk3OTYyYjAxN2Q5OTdiNzU3YzA2ZGF8Ykc0eUtiOGF5Yg==")));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        $curlError = null;
+        if(curl_errno($ch)) {
+            $curlError = curl_error($ch);
+        }
+        curl_close($ch);
+
+        $responseData = json_decode($responseData, true);
+        $res = $responseData['result'];
+
+        if(!preg_match("/^(000\.000\.|000\.100\.1|000\.[36])/", $res['code'])){
+            return view('frontend.payment.subscription_complete', [
+                'paymentResponse' => [
+                    'message' => 'Your payment was not successful. Please try again.',
+                    'messageAr' => "الدفع الخاص بك لم يكن ناجحا. حاول مرة اخرى.",
+                    "success" => false,
+                    "exist" => true,
+                ]
+            ]);
+        }
+
+        $customer_id = null;
+        try {
+            $customer_id = DB::table('customers')->insertGetId([
+                'user_id' => $params['user_id'],
+            ]);
+        } catch (\Throwable $th) {}
+
+        if($customer_id === null){
+            return view('frontend.payment.subscription_complete', [
+                'paymentResponse' => [
+                    'message' => 'An error occurred while processing payment. Please contact administrator.',
+                    'messageAr' => "حدث خطأ أثناء معالجة الدفع. يرجى الاتصال بالمسؤول.",
+                    "success" => true,
+                    "exist" => false,
+                ]
+            ]);
+        }
+
+        if (!empty($params['action'])) {
+            $now = new \DateTime();
+            DB::table('users')
+                ->where('id', $params['user_id'])
+                ->update(['customer_package_id' => $params['package_id'], "created_at" => $now]);
+        } else {
+            DB::table('users')
+                ->where('id', $params['user_id'])
+                ->update(['customer_package_id' => $params['package_id']]);
+        }
+
+
+        $package = DB::table('customer_packages')
+            ->where('customer_packages.id', $params['package_id'])
+            ->leftJoin('uploads', "customer_packages.logo" , "=", "uploads.id")
+            ->join('customer_package_translations', 'customer_packages.id', '=', 'customer_package_translations.customer_package_id')
+            ->where('customer_package_translations.lang', "en")
+            ->select('customer_packages.*', 'uploads.file_name as url_logo', 'customer_package_translations.name as label')
+            ->first();
+
+        $payment_id = DB::table('customer_package_payments')->insertGetId([
+            'user_id' => $params['user_id'],
+            "customer_package_id" => $params['package_id'],
+            "payment_method" => "Bank card",
+            "payment_details" => $responseData['id'],
+            "approval" => 1,
+            "offline_payment" => 2,
+            "reciept" => "",
+            "qr_code" => $params['qr_code']
+        ]);
+
+        $user = User::where('id', $params['user_id'])->first();
+        $data = [
+            "user_name" => $user->name,
+            "email" => $user->email,
+            "package_name" => $package->label,
+            "package_price" => $params['amount'],
+            "date" => $params['date_qr'],
+            "invoice_id" => $payment_id,
+            "qr_code" => $params['qr_code'],
+            "vat_val" => $params['vat_total']
+        ];
+        $to = $user->email;
+
+        try { $this->sendMail($data, $to); } catch (\Throwable $th) {}
+
+        return view('frontend.payment.subscription_complete', [
+            'paymentResponse' => [
+                'message' => 'Your payment was successful.',
+                'messageAr' => "تم الدفع الخاص بك بنجاح",
+                "success" => true,
+                "exist" => false
+            ]
+        ]);
+    }
+}

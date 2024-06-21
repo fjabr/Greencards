@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/vendors.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/aiz-core.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/custom-style.css') }}">
+    <style>
+        .spinner-border {
+            border-right-color: #0000003d !important;
+        }
+    </style>
+</head>
+<body>
+<section class="py-4 mb-4 bg-light">
+    <div class="container text-center ">
+        <div class="d-flex justify-content-center">
+            <form action="{{ URL::to('/subscription-complete?'.$query) }}" class="paymentWidgets" data-brands="VISA MASTER AMEX MADA"></form>
+
+            @if(env("HYPERPAY_MODE_TEST") === "on")
+                <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=<?= $id;?>"></script>
+                <!--<script src=https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId=< ?= $id;?>"></script>-->
+            @else
+                <script src="https://eu-prod.oppwa.com/v1/paymentWidgets.js?checkoutId=<?= $id;?>"></script>
+            @endif
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

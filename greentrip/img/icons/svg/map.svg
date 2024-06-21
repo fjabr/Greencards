@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg2"
+   viewBox="0 0 71.400002 60.325484"
+   height="17.025192mm"
+   width="20.150667mm">
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-210.01429,-482.19946)"
+     id="layer1">
+    <g
+       transform="translate(195.71429,462.29946)"
+       id="g3354">
+      <g
+         id="g3339">
+        <path
+           d="m 61.6,19.9 c -4.6,0 -8.4,2.9 -9.9,6.9 L 38.8,22.3 c -0.1,-0.1 -0.3,-0.2 -0.5,-0.2 -0.2,0 -0.4,0.1 -0.5,0.2 l -22.7,8 c -0.1,0 -0.1,0 -0.2,0.1 -0.3,0.1 -0.6,0.5 -0.6,1 l 0,48.3 c 0.1,0.4 0.5,0.6 0.8,0.5 L 38.4,72 c 0.1,0 0.1,0.1 0.2,0.1 l 22.7,8 0,0 c 0,0 0,0 0,0 0.1,0 0.1,0.1 0.2,0.1 l 0,0 c 0,0 0.1,0 0.1,0 l 0.1,0 c 0.3,0 0.6,-0.1 0.9,-0.3 l 0,0 22.6,-8 c 0.3,-0.1 0.5,-0.4 0.5,-0.7 l 0,-48.4 c 0,-0.4 -0.4,-0.8 -0.9,-0.8 -0.1,0 -0.1,0 -0.2,0.1 l -13.1,4.6 c -1.5,-4 -5.3,-6.8 -9.9,-6.8 l 0,0 z m 0,1.6 c 5,0 9,4 9.1,9 0,2.6 -1.1,4.2 -2.6,5.8 -1.5,1.6 -3.5,3 -4.8,5.1 0,0 0,0 0,0 -0.8,1.3 -1.4,2.9 -1.7,4.6 -0.4,-1.8 -0.9,-3.3 -1.7,-4.6 0,0 0,0 0,0 -1.3,-2.1 -3.2,-3.5 -4.8,-5.1 -1.5,-1.6 -2.6,-3.2 -2.6,-5.8 0.1,-5 4.1,-9 9.1,-9 l 0,0 z m -24.1,2.4 0,46.7 -21.7,7.6 0,-46.6 21.7,-7.7 0,0 z m 1.6,0 12.1,4.3 c -0.2,0.7 -0.3,1.5 -0.3,2.2 -0.1,3.1 1.4,5.2 3,6.9 1.6,1.7 3.5,3.1 4.6,4.9 1.6,2.6 2.1,5.8 2.1,11.1 0,0.4 0.4,0.8 0.8,0.8 l 0.2,0 0.2,0 c 0.4,0 0.8,-0.4 0.8,-0.8 0,-5.3 0.5,-8.6 2.1,-11.1 1.1,-1.8 3,-3.2 4.6,-4.9 1.7,-1.7 3.1,-3.8 3,-6.9 0,-0.8 -0.1,-1.5 -0.3,-2.2 l 12.1,-4.3 0,46.6 -21.7,7.7 0,-16.6 c 0,-0.4 -0.4,-0.8 -0.8,-0.8 -0.4,0 -0.8,0.4 -0.8,0.8 l 0,16.6 -21.8,-7.7 0.1,-46.6 0,0 z m 22.5,2.2 c -2.4,0 -4.3,2 -4.3,4.3 0,2.4 1.9,4.3 4.3,4.3 2.4,0 4.3,-1.9 4.3,-4.3 C 66,28.1 64,26.1 61.6,26.1 l 0,0 z m 0,1.6 c 1.5,0 2.8,1.2 2.8,2.7 0,1.5 -1.2,2.7 -2.8,2.7 -1.6,0 -2.7,-1.2 -2.7,-2.7 0,-1.5 1.2,-2.7 2.7,-2.7 l 0,0 z"
+           id="path3341" />
+      </g>
+      <text
+         style="font-size:5px;font-family:Arial-BoldMT;display:none;enable-background:new"
+         transform="translate(0,115)"
+         class="st0 st1 st2"
+         id="text3343">Created by artworkbean</text>
+      <text
+         style="font-size:5px;font-family:Arial-BoldMT;display:none;enable-background:new"
+         transform="translate(0,120)"
+         class="st0 st1 st2"
+         id="text3345">from the Noun Project</text>
+    </g>
+  </g>
+  <style
+     type="text/css"
+     id="style3337">
+	.st0{display:none;enable-background:new    ;}
+	.st1{font-family:'Arial-BoldMT';}
+	.st2{font-size:5px;}
+</style>
+</svg>

@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/vendors.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/aiz-core.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/custom-style.css') }}">
+    <style>
+        .spinner-border {
+            border-right-color: #0000003d !important;
+        }
+    </style>
+</head>
+<body>
+    <section class="py-4 mb-4 bg-light">
+        @if ($paymentResponse["success"] == true)
+            <div class="container text-center ">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            @php
+                $url = env("HYPERPAY_MODE_TEST") == "on" ? "https://eu-test.oppwa.com/v1/checkouts" : "https://eu-prod.oppwa.com/v1/checkouts";
+                $amount = number_format((float) $paymentResponse['amount'], 2, '.', '');
+                $ssl = env("HYPERPAY_SSL") == "on"? true : false;
+                $data = "entityId=".env('HYPERPAY_ID', '8ac7a4ca7d97962b017d997e2b8d06e4').
+                    "&amount=" .$amount .
+                    "&currency=" .env("HYPERPAY_CURRENCY", "SAR") .
+                    "&paymentType=DB&locale=ar-SA";
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:Bearer '.env("HYPERPAY_TOKEN", "OGFjN2E0Y2E3ZDk3OTYyYjAxN2Q5OTdiNzU3YzA2ZGF8Ykc0eUtiOGF5Yg==")));
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $ssl);// this should be set to true in production
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $responseData = curl_exec($ch);
+                if(curl_errno($ch)) {
+                    $curlError = curl_error($ch);
+                }
+                curl_close($ch);
+
+                $responseData = json_decode($responseData, true);
+                $id = urlencode($responseData['id']);
+                header("Location: " . URL::to('/subscription-checkout/'.$id.'?'.$paymentResponse["query"]), true, 302);
+                exit();
+            @endphp
+        @else
+            <div class="container text-center ">
+                <div class="d-flex justify-content-center">
+                    <p>{{$paymentResponse["message"]}}</p>
+                </div>
+            </div>
+        @endif
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+//----------------------------------------------------//
+// TYPOGRAPHY                                         //
+//----------------------------------------------------//
+body {
+	background: #fff;
+	font-family: $mainFont;
+  font-size: $mainFontSize;
+  font-weight: $mainFontWeight;
+  line-height: $mainLineHeight;
+  color: $mainFontColor;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	line-height: 1.2;
+	font-weight: 700;
+}
+h1 {
+	font-size: 27px;
+	margin-bottom: 28px;
+	text-align: center;
+}
+h2 {
+	font-size: 31px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+h3 {
+}
+h4 {
+}
+h5 {
+}
+h6 {
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+hr {
+	overflow:hidden;
+	border:0;
+	border-bottom:1px solid #000;
+	margin-bottom:18px;
+}
+strong,
+b {
+	font-weight: bold;
+}
+a {
+	&:hover {
+
+	}
+}
+i {
+	font-style: italic;
+}
+.subtitle {
+	display: block;
+	font-size: 23px;
+	line-height: 1.2;
+	text-align: center;
+}
+.reg {
+	font-weight: 400;
+}
+.thin {
+	font-weight: 200;
+}

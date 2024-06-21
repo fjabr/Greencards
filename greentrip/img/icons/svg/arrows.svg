@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg3360"
+   viewBox="0 0 92.738538 56.6"
+   height="15.973778mm"
+   width="26.172876mm">
+  <defs
+     id="defs3362" />
+  <metadata
+     id="metadata3365">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-176.48788,-284.0622)"
+     id="layer1">
+    <g
+       transform="translate(172.88788,262.3622)"
+       id="g3388">
+      <g
+         id="g3371">
+        <path
+           d="m 19.4,67.2 c 0.1,0.1 0.3,0.1 0.4,0.1 0.1,0 0.3,0 0.4,-0.1 0.1,-0.1 0.3,-0.1 0.4,-0.2 L 35.7,51.9 c 0.4,-0.4 0.4,-1.1 0,-1.6 -0.4,-0.4 -1.1,-0.4 -1.6,0 L 21,63.5 21,37.1 c 0,-7.3 5.9,-13.2 13.2,-13.2 l 46,0 c 0.6,0 1.1,-0.5 1.1,-1.1 0,-0.6 -0.5,-1.1 -1.1,-1.1 l -46,0 c -8.5,0 -15.4,6.9 -15.4,15.4 l 0,26.4 L 5.5,50.3 c -0.4,-0.4 -1.1,-0.4 -1.6,0 -0.4,0.4 -0.4,1.1 0,1.6 L 19.1,67 c 0.1,0.1 0.2,0.1 0.3,0.2 z"
+           id="path3373" />
+        <path
+           d="M 96,48.1 80.9,33 c -0.1,-0.1 -0.2,-0.2 -0.4,-0.2 -0.3,-0.1 -0.6,-0.1 -0.8,0 -0.1,0.1 -0.3,0.1 -0.4,0.2 l -15,15.1 c -0.4,0.4 -0.4,1.1 0,1.6 0.2,0.2 0.5,0.3 0.8,0.3 0.3,0 0.6,-0.1 0.8,-0.3 L 79,36.5 79,62.9 c 0,7.3 -5.9,13.2 -13.2,13.2 l -46,0 c -0.6,0 -1.1,0.5 -1.1,1.1 0,0.6 0.5,1.1 1.1,1.1 l 46,0 c 8.5,0 15.4,-6.9 15.4,-15.4 l 0,-26.4 13.2,13.2 c 0.4,0.4 1.1,0.4 1.6,0 0.5,-0.4 0.4,-1.1 0,-1.6 z"
+           id="path3375" />
+      </g>
+      <text
+         style="font-size:5px;font-family:Arial-BoldMT;display:none;enable-background:new"
+         transform="translate(0,115)"
+         class="st0 st1 st2"
+         id="text3377">Created by Michal Beno</text>
+      <text
+         style="font-size:5px;font-family:Arial-BoldMT;display:none;enable-background:new"
+         transform="translate(0,120)"
+         class="st0 st1 st2"
+         id="text3379">from the Noun Project</text>
+    </g>
+  </g>
+  <style
+     type="text/css"
+     id="style3369">
+	.st0{display:none;enable-background:new    ;}
+	.st1{font-family:'Arial-BoldMT';}
+	.st2{font-size:5px;}
+</style>
+</svg>

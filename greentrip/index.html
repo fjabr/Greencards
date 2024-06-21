@@ -1,0 +1,651 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cheap flights from major airlines and agencies
+ </title>
+  <meta name="keywords" content="">
+  
+
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!-- Media queries -->
+  <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, user-scalable=yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- FAVICON -->
+  <link href="https://greencard-sa.com/public/uploads/all/hgBTtwUOx1dfePYmtjZ63MsdUQYKfzoMKnMrA9Jg.png" rel="shortcut icon">
+
+  <!-- CSS LINKS -->
+  <!-- Widgets style -->
+  <link href="css/widgets.css" rel="stylesheet" media="screen">
+  <!-- Main style -->
+  <link href="css/main.css" rel="stylesheet" media="screen">
+  
+  
+</head>
+
+<body>
+  <!-- create docReady event -->
+  <script>
+    function addEvent(elem, event, fn) {
+      if (elem.addEventListener) {
+        elem.addEventListener(event, fn, false);
+      } else {
+        elem.attachEvent("on" + event, function() {
+          // set the this pointer same as addEventListener when fn is called
+          return(fn.call(elem, window.event));
+        });
+      }
+    }
+
+    var logs = [];
+    var eventSet = false;
+    var loaded = false;
+    function log(str) {
+
+        if (loaded) {
+            output(str);
+        } else {
+            logs.push(str);
+        }
+
+        function output(str) {
+            var o = document.getElementById("log");
+            var div = document.createElement("div");
+            div.appendChild(document.createTextNode(str));
+            o.appendChild(div);
+        }
+
+        if (!eventSet) {
+            eventSet = true;
+            addEvent(window, "load", function() {
+                loaded = true;
+                for (var i = 0; i < logs.length; i++) {
+                    output(logs[i]);
+                }
+                logs = [];
+            });
+        }
+    }
+
+    (function(funcName, baseObj) {
+      // The public function name defaults to window.docReady
+      // but you can pass in your own object and own function name and those will be used
+      // if you want to put them in a different namespace
+      funcName = funcName || "docReady";
+      baseObj = baseObj || window;
+      var readyList = [];
+      var readyFired = false;
+      var readyEventHandlersInstalled = false;
+
+      // call this when the document is ready
+      // this function protects itself against being called more than once
+      function ready() {
+          if (!readyFired) {
+              // this must be set to true before we start calling callbacks
+              readyFired = true;
+              for (var i = 0; i < readyList.length; i++) {
+                  // if a callback here happens to add new ready handlers,
+                  // the docReady() function will see that it already fired
+                  // and will schedule the callback to run right after
+                  // this event loop finishes so all handlers will still execute
+                  // in order and no new ones will be added to the readyList
+                  // while we are processing the list
+                  readyList[i].fn.call(window, readyList[i].ctx);
+              }
+              // allow any closures held by these functions to free
+              readyList = [];
+          }
+      }
+
+      function readyStateChange() {
+      if ( document.readyState === "complete" ) {
+              ready();
+          }
+      }
+
+      // This is the one public interface
+      // docReady(fn, context);
+      // the context argument is optional - if present, it will be passed
+      // as an argument to the callback
+      baseObj[funcName] = function(callback, context) {
+          // if ready has already fired, then just schedule the callback
+          // to fire asynchronously, but right away
+          if (readyFired) {
+              setTimeout(function() {callback(context);}, 1);
+              return;
+          } else {
+              // add the function and context to the list
+              readyList.push({fn: callback, ctx: context});
+          }
+          // if document already ready to go, schedule the ready function to run
+          if (document.readyState === "complete") {
+              setTimeout(ready, 1);
+          } else if (!readyEventHandlersInstalled) {
+              // otherwise if we don't have event handlers installed, install them
+              if (document.addEventListener) {
+                  // first choice is DOMContentLoaded event
+                  document.addEventListener("DOMContentLoaded", ready, false);
+                  // backup is window load event
+                  window.addEventListener("load", ready, false);
+              } else {
+                  // must be IE
+                  document.attachEvent("onreadystatechange", readyStateChange);
+                  window.attachEvent("onload", ready);
+              }
+              readyEventHandlersInstalled = true;
+          }
+      }
+    })("docReady", window);
+  </script>
+  <!-- create docReady event end -->
+
+  <!-- set cookies and marker objects -->
+  <script charset="utf-8" type="text/javascript">
+    window.cookies = (function() {
+      var forbidden_re, has_re, repl_re;
+      repl_re = function(key) {
+        return new RegExp("(?:^|.*;\\s*)" + escape(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*");
+      };
+      has_re = function(key) {
+        return new RegExp("(?:^|;\\s*)" + escape(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=");
+      };
+      forbidden_re = /^(?:expires|max\-age|path|domain|secure)$/;
+      return {
+        get: function(key) {
+          if (!key || !this.has(key)) {
+            return null;
+          }
+          return unescape(document.cookie.replace(repl_re(key), "$1"));
+        },
+        set: function(key, value, end, path, domain, secure) {
+          var expires;
+          if (!key || forbidden_re.test(key)) {
+            return;
+          }
+          expires = "";
+          if (end) {
+            switch (typeof end) {
+              case "number":
+                expires = "; max-age=" + end;
+                break;
+              case "string":
+                if (end === "unlimited") {
+                  expires = "; expires=" + "Fri, 10 Jul 2099 13:05:42 UTC";
+                } else {
+                  expires = "; expires=" + end;
+                }
+                break;
+              case "object":
+                if (end.hasOwnProperty("toGMTString")) {
+                  expires = "; expires=" + end.toGMTString();
+                }
+            }
+          }
+          document.cookie = escape(key) + "=" + escape(value) + expires + (domain ? "; domain=" + domain : "") + (path ? "; path=" + path : "") + (secure ? "; secure" : "");
+        },
+        remove: function(key) {
+          var expire_date;
+          if (!key || !this.has(key)) {
+            return;
+          }
+          expire_date = new Date();
+          expire_date.setDate(expire_date.getDate() - 100);
+          document.cookie = escape(key) + "=; expires=" + expire_date.toGMTString() + "; path=/";
+        },
+        has: function(key) {
+          return has_re(key).test(document.cookie);
+        },
+        object: function(key) {
+          var item;
+          if (!key || !this.has(key)) {
+            return;
+          }
+          item = this.get(key);
+          return new Function("return " + unescape(item.replace(/\+/g, " ")))();
+        }
+      };
+    })();
+
+    window.Marker = {
+      default_marker: '346381',
+      get: function() {
+        return cookies.get('marker');
+      },
+      set: function(value) {
+        domain = window.location.hostname;
+        expire = new Date(+(new Date) + 60 * 60 * 24 * 30 * 1e3);
+        cookies.set('marker', value, expire.toGMTString(), '/', domain);
+        return value;
+      },
+      handle_marker: function(value) {
+        if (value && this._new_marker(value) && (this.is_affiliate(value) || !this.is_affiliate(this.get()))) {
+          return this.set(value);
+        }
+        if (!this.get()) {
+          return this.set(this.default_marker);
+        }
+        return this.get();
+      },
+      _new_marker: function(value) {
+        return value !== this.get();
+      },
+      get_from_params: function() {
+        var a, b, i, p;
+        a = window.location.search.substr(1).split('&');
+        if (a === "") {
+          return {};
+        }
+        b = {};
+        i = 0;
+        while (i < a.length) {
+          p = a[i].split("=", 2);
+          if (p.length === 1) {
+            b[p[0]] = "";
+          } else {
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+          }
+          ++i;
+        }
+        return b.marker;
+      },
+      get_marker: function() {
+        if (this.get_from_params() != null) {
+          this.set(this.get_from_params())
+        }
+        if (this.get() == null) {
+          this.set(this.default_marker);
+        }
+        return this.get() || this.default_marker;
+      }
+    };
+  </script>
+  <!-- set cookies and marker objects end -->
+
+  <!-- set form settings -->
+  <script>
+    marker = Marker.get_marker();
+    window.TP_FORM_SETTINGS = window.TP_FORM_SETTINGS || {};
+    window.TP_FORM_SETTINGS["2be039f7038185b768e4b95ae22c8fe4"] = {
+      "handle": "2be039f7038185b768e4b95ae22c8fe4",
+      "widget_name": "Search form #3",
+      "border_radius": "2",
+      "additional_marker": null,
+      "width": 900,
+      "show_logo": false,
+      "marker": marker
+    };
+  </script>
+  <!-- set form settings -->
+
+  <!-- add form widgets -->
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+      var script = document.createElement('script');
+      script.setAttribute('charset', 'utf-8');
+      script.setAttribute('async', 'true');
+      script.setAttribute('src', '//www.travelpayouts.com/widgets/2be039f7038185b768e4b95ae22c8fe4.js?v=2186');
+      document.getElementById('present__form').appendChild(script);
+    });
+  </script>
+
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+      var script = document.createElement('script');
+      script.setAttribute('charset', 'utf-8');
+      script.setAttribute('async', 'true');
+      script.setAttribute('src', '//www.travelpayouts.com/widgets/2be039f7038185b768e4b95ae22c8fe4.js?v=2186');
+      document.getElementById('choose__form').appendChild(script);
+    });
+  </script>
+  <!-- add form widgets end -->
+
+  <!-- add calendar widget -->
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+      marker = Marker.get_marker();
+      var script = document.createElement('script');
+      script.setAttribute('charset', 'utf-8');
+      script.setAttribute('async', 'true');
+      script.setAttribute('src', '//www.travelpayouts.com/calendar_widget/iframe.js?marker=' + marker +'.&origin=JED&destination=&currency=sar&width=800&searchUrl=search.jetradar.com&locale=en&powered_by=false&one_way=false&only_direct=false&period=year&range=7%2C14&primary=%230C73FE');
+      document.getElementById('calendar__form').appendChild(script);
+    });
+  </script>
+  <!-- add calendar widget end -->
+
+  <!-- add places widget 1 -->
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+        marker = Marker.get_marker();
+        var script = document.createElement('script');
+        script.setAttribute('charset', 'utf-8');
+        script.setAttribute('async', 'true');
+        script.setAttribute('src', '//www.travelpayouts.com/weedle/widget.js?width=400px&marker=' + marker +'&host==www.aviasales.com%2Fsearch&locale=en&limit=5&powered_by=false&destination=DMM&currency=sar&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF');
+        document.getElementById('popular__list__item-1').appendChild(script);
+    });
+  </script>
+
+  <!-- add places widget end 1-->
+
+    <!-- add places widget 2 --> 
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+        marker = Marker.get_marker();
+        var script = document.createElement('script');
+        script.setAttribute('charset', 'utf-8');
+        script.setAttribute('async', 'true');
+        script.setAttribute('src', '//www.travelpayouts.com/weedle/widget.js?width=400px&marker=' + marker +'&host==www.aviasales.com%2Fsearch&locale=en&limit=5&powered_by=false&destination=JED&currency=sar&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF');
+        document.getElementById('popular__list__item-2').appendChild(script);
+    });
+  </script>
+  <!-- add places widget end 2-->
+  
+  
+   <!-- add places widget 3 --> 
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+        marker = Marker.get_marker();
+        var script = document.createElement('script');
+        script.setAttribute('charset', 'utf-8');
+        script.setAttribute('async', 'true');
+        script.setAttribute('src', '//www.travelpayouts.com/weedle/widget.js?width=400px&marker=' + marker +'&host==www.aviasales.com%2Fsearch&locale=en&limit=5&powered_by=false&destination=RUH&currency=sar&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF');
+        document.getElementById('popular__list__item-3').appendChild(script);
+    });
+  </script>
+  <!-- add places widget end 3-->
+  
+    <!-- add places widget 4 --> 
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+        marker = Marker.get_marker();
+        var script = document.createElement('script');
+        script.setAttribute('charset', 'utf-8');
+        script.setAttribute('async', 'true');
+        script.setAttribute('src', '//www.travelpayouts.com/weedle/widget.js?width=400px&marker=' + marker +'&host==www.aviasales.com%2Fsearch&locale=en&limit=5&powered_by=false&destination=ELQ&currency=sar&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF');
+        document.getElementById('popular__list__item-4').appendChild(script);
+    });
+  </script>
+  <!-- add places widget end 4-->
+  
+      <!-- add places widget 5 --> 
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+        marker = Marker.get_marker();
+        var script = document.createElement('script');
+        script.setAttribute('charset', 'utf-8');
+        script.setAttribute('async', 'true');
+        script.setAttribute('src', '//www.travelpayouts.com/weedle/widget.js?width=400px&marker=' + marker +'&host==www.aviasales.com%2Fsearch&locale=en&limit=5&powered_by=false&destination=AHB&currency=sar&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF');
+        document.getElementById('popular__list__item-5').appendChild(script);
+    });
+  </script>
+  <!-- add places widget end 5-->
+    
+   <!-- add places widget 6 --> 
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+        marker = Marker.get_marker();
+        var script = document.createElement('script');
+        script.setAttribute('charset', 'utf-8');
+        script.setAttribute('async', 'true');
+        script.setAttribute('src', '//www.travelpayouts.com/weedle/widget.js?width=400px&marker=' + marker +'&host==www.aviasales.com%2Fsearch&locale=en&limit=5&powered_by=false&destination=TIF&currency=sar&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF');
+        document.getElementById('popular__list__item-6').appendChild(script);
+    });
+  </script>
+  <!-- add places widget end 6-->
+  
+  <!-- set links address -->
+  <script charset="utf-8" type="text/javascript">
+    docReady(function() {
+      marker = Marker.get_marker();
+      var logo1 = document.getElementById('logo-top');
+      var logo2 = document.getElementById('logo-bottom');
+      var href = "https://greencard-sa.com/";
+      logo1.setAttribute('href', href);
+      logo2.setAttribute('href', href);
+    });
+  </script>
+  <!-- set links address -->
+
+  <!-- wrapper -->
+  <div class="wrapper">
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?><svg style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="0 0 50.349998 89.999998" id="arrow"><path d="M1.35 41.8c-1.8 1.8-1.8 4.7 0 6.4l40.3 40.3c2 2 5.2 2 7.2 0s2-5.2 0-7.2l-33.1-33.1c-1.8-1.8-1.8-4.7 0-6.4l33.1-33.1c2-2 2-5.2 0-7.2s-5.2-2-7.2 0L1.35 41.8z"/></symbol><symbol id="arrows" viewBox="0 0 92.738538 56.6"><g transform="translate(-176.488 -284.062)" id="blayer1"><g transform="translate(172.888 262.362)" id="bg3388"><g id="bg3371"><path d="M19.4 67.2c.1.1.3.1.4.1.1 0 .3 0 .4-.1.1-.1.3-.1.4-.2l15.1-15.1c.4-.4.4-1.1 0-1.6-.4-.4-1.1-.4-1.6 0L21 63.5V37.1c0-7.3 5.9-13.2 13.2-13.2h46c.6 0 1.1-.5 1.1-1.1 0-.6-.5-1.1-1.1-1.1h-46c-8.5 0-15.4 6.9-15.4 15.4v26.4L5.5 50.3c-.4-.4-1.1-.4-1.6 0-.4.4-.4 1.1 0 1.6L19.1 67c.1.1.2.1.3.2z" id="bpath3373"/><path d="M96 48.1L80.9 33c-.1-.1-.2-.2-.4-.2-.3-.1-.6-.1-.8 0-.1.1-.3.1-.4.2l-15 15.1c-.4.4-.4 1.1 0 1.6.2.2.5.3.8.3.3 0 .6-.1.8-.3L79 36.5v26.4c0 7.3-5.9 13.2-13.2 13.2h-46c-.6 0-1.1.5-1.1 1.1 0 .6.5 1.1 1.1 1.1h46c8.5 0 15.4-6.9 15.4-15.4V36.5l13.2 13.2c.4.4 1.1.4 1.6 0s.4-1.1 0-1.6z" id="bpath3375"/></g></g></g><style id="bstyle3369">.st0{display:none;enable-background:new}.st1{font-family:'Arial-BoldMT'}.st2{font-size:5px}</style></symbol><symbol viewBox="0 0 46.000001 38" id="calendar"><path d="M42 38H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h38a4 4 0 0 1 4 4v30a4 4 0 0 1-4 4zm2-34a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v6h42V4zm0 8H2v22a2 2 0 0 0 2 2h38a2 2 0 0 0 2-2V12zm-4 14h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm0-7h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm-8 7h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm0-7h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm-8 7h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm0-7h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm-8 14h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm0-7h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm0-7h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zM8 33H6a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm0-7H6a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1zm14 3h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z" clip-rule="evenodd" fill-rule="evenodd"/></symbol><symbol id="deal" viewBox="0 0 97.099339 68.712697"><g transform="translate(-62.88 -412.292)" id="dlayer1"><g transform="translate(61.43 396.625)" id="dg3438"><path d="M17.1 57.2l1-.9-2.3-4.2 12.8-25.8s6.7-5.3 19.2-3.2c.3.1 1.1.3 2.1.6l21.7-.9 1.4 3-5.8.3-10.5.4C60 28 63 29.9 64 31.8c0 0 1.6 10.6 3.5 13 0 0-6.4 8.7-12.2-6.6 0 0-2.1-3-4.8-4.4L19.1 59.6c-1.4 1.1-1.6 3.2-.5 4.5 1.1 1.4 3.2 1.6 4.5.5l1.6-1.3c.1-.1.3-.2.4-.4l16.7-12.7c.3-.2.6-.3.9-.3.9 0 1.6.7 1.6 1.6 0 .5-.2.9-.6 1.2L28.1 64.6l-1.4 1.1c-1.1 1.2-1.2 3-.2 4.3 1 1.2 3.6 1.3 5.3.1.3-.3.5-.6.9-.8l14-11.3c.3-.4.7-.6 1.2-.6.9 0 1.6.7 1.6 1.6 0 .5-.2.9-.5 1.2L34.7 71.6c-1.4 1.1-1.6 3.2-.5 4.5.5.7 1.3 1.1 2.2 1.2.9.1 1.7-.2 2.4-.7l12-9.7c.3-.2.6-.3 1-.3.9 0 1.6.7 1.6 1.6 0 .5-.2.9-.6 1.2l-7.5 6.3c-.5.4-.8 1-.9 1.6-.1.6.1 1.3.5 1.7.4.5 1 .8 1.6.9.6.1 1.3-.1 1.7-.5l.7-.5c-.1-1.3.5-2.7 1.6-3.6.9-.7 2.1-1 3.2-.8l1.4-1c-.2-1.5.4-3.2 1.7-4.2 1.4-1.1 3.2-1.2 4.7-.5l.5-.4c-.4-1.7.2-3.5 1.6-4.6l.1-.1c1.6-1.2 3.7-1.2 5.3-.2h.1l-.1-.2c-1.7-2.1-1.3-5.2.8-6.9 1.8-1.4 4.4-1.3 6.1.1l5.1-6.6 2.1-2.7 1.5 3.1-6.7 8.7 2.5 3.2c1.7 2.1 1.3 5.2-.8 6.9-1.8 1.4-4.4 1.3-6.1-.1 1.1 1.9.7 4.4-1.1 5.8l-.1.1c-1.8 1.4-4.4 1.2-6-.4.6 1.8.1 3.9-1.5 5.1-2 1.5-4.8 1.2-6.3-.8l-.3-.4c.8 1.7.3 3.9-1.2 5.1-1.8 1.4-4.5 1.1-5.9-.7l-.8-1h-.1c-1 .8-2.2 1.2-3.4 1.2h-.6c-1.5-.2-2.8-.9-3.7-2-.6-.7-.9-1.5-1.1-2.4l-.6.5c-1.1.9-2.5 1.4-4 1.4h-.7c-1.7-.2-3.2-1-4.3-2.3-1-1.2-1.5-2.7-1.4-4.2H29c-1.9 0-3.7-.6-4.9-2.1-.9-1.1-1.3-2.3-1.4-3.7-.5.1-1.1.2-1.7.2h-.7c-1.7-.2-3.2-1-4.3-2.3-2-2.7-1.6-6.7 1.1-8.9zM1.7 44.6l11.8-24.5c.6-1.3 2.2-1.9 3.5-1.2l6.7 3.2c1.3.6 1.9 2.2 1.2 3.5L13.2 50.1c-.6 1.3-2.2 1.9-3.5 1.2L3 48.1c-1.4-.6-1.9-2.2-1.3-3.5zm4.9 0c0 1.2 1 2.2 2.2 2.2 1.2 0 2.2-1 2.2-2.2 0-1.2-1-2.2-2.2-2.2-1.2 0-2.2 1-2.2 2.2zm80.1-27.4l11.6 24.6c.6 1.3.1 2.9-1.3 3.5l-6.7 3.2c-1.3.6-2.9.1-3.5-1.3L75.2 22.6c-.6-1.3-.1-2.9 1.3-3.5l6.7-3.2c1.3-.6 2.9 0 3.5 1.3zM89 41.8c0 1.2 1 2.2 2.2 2.2 1.2 0 2.2-1 2.2-2.2 0-1.2-1-2.2-2.2-2.2-1.2 0-2.2 1-2.2 2.2z" id="dpath3425"/></g></g><style id="dstyle3423">.st0{display:none;enable-background:new}.st1{font-family:'Arial-BoldMT'}.st2{font-size:5px}</style></symbol><symbol id="logo" viewBox="0 0 169.79 120.04"><defs><style>.ecls-1{fill:none}.ecls-2{fill:#fff}</style></defs><title>[AS] Logo Portrait Invert</title><path class="ecls-1" d="M88.88 114.33a1.21 1.21 0 0 0-.72-.21 2 2 0 0 0-1.28.47 3.33 3.33 0 0 0-.94 1.4 5.06 5.06 0 0 0-.36 1.86 2.25 2.25 0 0 0 .29 1.27 1 1 0 0 0 .86.41 1.75 1.75 0 0 0 1-.35 3.6 3.6 0 0 0 .91-.95 4.65 4.65 0 0 0 .61-1.31 4.45 4.45 0 0 0 .21-1.21 2.08 2.08 0 0 0-.15-.81 1.29 1.29 0 0 0-.43-.57zM76.86 115.22a1 1 0 0 0-.32-.8 1.31 1.31 0 0 0-.92-.29 2.29 2.29 0 0 0-1.65.69 3.4 3.4 0 0 0-.93 1.83h1.37a3.63 3.63 0 0 0 1.83-.37 1.18 1.18 0 0 0 .62-1.06zM92.04 116.73v.68a2.81 2.81 0 0 0 .37 1.62 1.33 1.33 0 0 0 1.17.52 1.78 1.78 0 0 0 1.15-.39 2.45 2.45 0 0 0 .75-1.09 4.6 4.6 0 0 0 .26-1.6 2.08 2.08 0 0 0-.36-1.33 1.2 1.2 0 0 0-1-.43 2.13 2.13 0 0 0-1.12.33 4.53 4.53 0 0 0-1.14 1.09q-.04.19-.08.6zM112.9 114.13a1.92 1.92 0 0 0-1.39.66 3.85 3.85 0 0 0-.93 1.76h.28q2.95 0 2.95-1.54a.86.86 0 0 0-.25-.63.9.9 0 0 0-.66-.25zM42.74 114.1a2 2 0 0 0-1.27.45 3 3 0 0 0-.9 1.28 4.69 4.69 0 0 0-.34 1.77q0 2 1.61 2a2 2 0 0 0 1.29-.44 3 3 0 0 0 .9-1.3 5.16 5.16 0 0 0 .33-1.88 2 2 0 0 0-.42-1.35 1.51 1.51 0 0 0-1.2-.53zM128.23 114.1a2 2 0 0 0-1.27.45 3 3 0 0 0-.9 1.28 4.69 4.69 0 0 0-.34 1.77q0 2 1.61 2a2 2 0 0 0 1.29-.44 3 3 0 0 0 .9-1.3 5.16 5.16 0 0 0 .33-1.88 2 2 0 0 0-.42-1.35 1.51 1.51 0 0 0-1.2-.53zM69.84 114.33a1.21 1.21 0 0 0-.72-.21 2 2 0 0 0-1.28.47 3.33 3.33 0 0 0-.94 1.4 5.06 5.06 0 0 0-.37 1.86 2.25 2.25 0 0 0 .29 1.27 1 1 0 0 0 .86.41 1.75 1.75 0 0 0 1-.35 3.6 3.6 0 0 0 .91-.95 4.65 4.65 0 0 0 .61-1.31 4.45 4.45 0 0 0 .21-1.21 2.08 2.08 0 0 0-.15-.81 1.29 1.29 0 0 0-.42-.57zM72.99 117.15v.42a2.09 2.09 0 0 0 .46 1.46 1.73 1.73 0 0 0 1.34.5 2.05 2.05 0 0 0 1.28-.35 1.15 1.15 0 0 0 .46-1q0-1.06-1.54-1.06h-2zM136.02 115.22a1 1 0 0 0-.32-.8 1.31 1.31 0 0 0-.92-.29 2.29 2.29 0 0 0-1.65.69 3.4 3.4 0 0 0-.93 1.83h1.37a3.63 3.63 0 0 0 1.83-.37 1.18 1.18 0 0 0 .62-1.06zM132.15 117.15v.42a2.09 2.09 0 0 0 .46 1.46 1.73 1.73 0 0 0 1.34.5 2.05 2.05 0 0 0 1.28-.35 1.15 1.15 0 0 0 .46-1q0-1.06-1.54-1.06h-2z"/><path class="ecls-2" d="M36.93 113.67a2.79 2.79 0 0 0-2.37 1.36l.21-1.26h-.47l-1.32 6.2h.56l.58-2.72a5.88 5.88 0 0 1 .59-1.63 3.09 3.09 0 0 1 .95-1.07 2.1 2.1 0 0 1 1.2-.38 1 1 0 0 1 .77.26 1 1 0 0 1 .25.71 4.11 4.11 0 0 1-.12.89l-.85 3.95h.56l.84-3.84a5.2 5.2 0 0 0 .14-1 1.41 1.41 0 0 0-.37-1 1.52 1.52 0 0 0-1.15-.47zM42.74 113.61a2.66 2.66 0 0 0-1.6.51 3.48 3.48 0 0 0-1.12 1.47 5 5 0 0 0-.42 2 2.64 2.64 0 0 0 .54 1.79 2 2 0 0 0 1.59.62 2.7 2.7 0 0 0 1.63-.51 3.4 3.4 0 0 0 1.11-1.49 5.41 5.41 0 0 0 .41-2.1 2.45 2.45 0 0 0-.56-1.71 2 2 0 0 0-1.58-.58zm1.23 4.2a3 3 0 0 1-.9 1.3 2 2 0 0 1-1.29.44q-1.61 0-1.61-2a4.69 4.69 0 0 1 .34-1.77 3 3 0 0 1 .9-1.28 2 2 0 0 1 1.27-.45 1.51 1.51 0 0 1 1.2.47 2 2 0 0 1 .42 1.35 5.16 5.16 0 0 1-.33 1.94zM50.37 116.5a5.76 5.76 0 0 1-.57 1.59 3 3 0 0 1-.94 1.07 2.08 2.08 0 0 1-1.18.37 1.13 1.13 0 0 1-.79-.25.86.86 0 0 1-.27-.67 4.9 4.9 0 0 1 .12-.94l.87-4h-.57l-.85 4a5.35 5.35 0 0 0-.13 1 1.33 1.33 0 0 0 .38 1 1.62 1.62 0 0 0 1.13.35 2.81 2.81 0 0 0 2.3-1.26l-.13 1.17h.46l1.32-6.2h-.56zM54.09 114.14a3.41 3.41 0 0 0-1.13 1.47 5.1 5.1 0 0 0-.42 2.06 2.5 2.5 0 0 0 .57 1.75 2 2 0 0 0 1.57.63 3.49 3.49 0 0 0 1.56-.32v-.52a3.26 3.26 0 0 1-1.5.34 1.48 1.48 0 0 1-1.19-.49 2.07 2.07 0 0 1-.42-1.39 4.79 4.79 0 0 1 .34-1.82 2.89 2.89 0 0 1 .93-1.27 2.17 2.17 0 0 1 1.33-.44 3.07 3.07 0 0 1 1.24.27l.16-.51a3.65 3.65 0 0 0-1.39-.23 2.79 2.79 0 0 0-1.65.47zM61.91 113.73l-3.27 2.99.63-2.99h-.56l-1.28 6.2h.56l.64-3.13 2.23 3.13h.73l-2.31-3.16 3.46-3.04h-.83zM70.74 114.88a1.46 1.46 0 0 0-1.59-1.25 2.52 2.52 0 0 0-1.58.56 3.8 3.8 0 0 0-1.14 1.58 5.5 5.5 0 0 0-.43 2.14q0 2.13 1.6 2.13a2.21 2.21 0 0 0 1.35-.43 4.12 4.12 0 0 0 1.07-1.24l-.28 1.56h.47l1.31-6.2h-.46zm-.51 2a4.65 4.65 0 0 1-.61 1.31 3.6 3.6 0 0 1-.91.95 1.75 1.75 0 0 1-1 .35 1 1 0 0 1-.86-.41 2.25 2.25 0 0 1-.29-1.27 5.06 5.06 0 0 1 .37-1.86 3.33 3.33 0 0 1 .94-1.4 2 2 0 0 1 1.28-.47 1.21 1.21 0 0 1 .72.21 1.29 1.29 0 0 1 .44.56 2.08 2.08 0 0 1 .15.81 4.45 4.45 0 0 1-.25 1.26zM77.03 116.26a1.51 1.51 0 0 0 .42-1.1 1.4 1.4 0 0 0-.46-1.11 1.94 1.94 0 0 0-1.31-.4 2.88 2.88 0 0 0-1.67.51 3.41 3.41 0 0 0-1.16 1.42 4.63 4.63 0 0 0-.42 2 2.72 2.72 0 0 0 .58 1.87 2.14 2.14 0 0 0 1.69.65 3.17 3.17 0 0 0 1.3-.24 1.91 1.91 0 0 0 .83-.67 1.69 1.69 0 0 0 .29-1 1.18 1.18 0 0 0-.33-.86 1.62 1.62 0 0 0-.93-.44 2.28 2.28 0 0 0 1.17-.63zm-.51 2a1.15 1.15 0 0 1-.46 1 2.05 2.05 0 0 1-1.28.35 1.73 1.73 0 0 1-1.34-.5 2.09 2.09 0 0 1-.46-1.46v-.42h2q1.54-.08 1.54.98zm-2.11-1.59h-1.37a3.4 3.4 0 0 1 .93-1.83 2.29 2.29 0 0 1 1.65-.69 1.31 1.31 0 0 1 .92.29 1 1 0 0 1 .32.8 1.18 1.18 0 0 1-.62 1.07 3.63 3.63 0 0 1-1.83.36zM82.82 116.5a5.75 5.75 0 0 1-.57 1.59 3 3 0 0 1-.94 1.07 2.08 2.08 0 0 1-1.18.37 1.13 1.13 0 0 1-.79-.25.86.86 0 0 1-.27-.67 4.9 4.9 0 0 1 .13-.9l.87-4h-.57l-.86 3.96a5.35 5.35 0 0 0-.13 1 1.33 1.33 0 0 0 .38 1 1.62 1.62 0 0 0 1.13.35 2.81 2.81 0 0 0 2.3-1.26l-.16 1.17h.46l1.32-6.2h-.56zM89.74 114.88a1.46 1.46 0 0 0-1.59-1.25 2.52 2.52 0 0 0-1.58.56 3.8 3.8 0 0 0-1.14 1.58 5.5 5.5 0 0 0-.43 2.14q0 2.13 1.6 2.13a2.21 2.21 0 0 0 1.35-.43 4.12 4.12 0 0 0 1.07-1.24l-.26 1.56h.47l1.31-6.2h-.46zm-.51 2a4.65 4.65 0 0 1-.61 1.31 3.6 3.6 0 0 1-.91.95 1.75 1.75 0 0 1-1 .35 1 1 0 0 1-.86-.41 2.25 2.25 0 0 1-.29-1.27 5.06 5.06 0 0 1 .36-1.86 3.33 3.33 0 0 1 .94-1.4 2 2 0 0 1 1.28-.47 1.21 1.21 0 0 1 .72.21 1.29 1.29 0 0 1 .44.56 2.08 2.08 0 0 1 .15.81 4.45 4.45 0 0 1-.19 1.26zM95.74 111.32a14.32 14.32 0 0 0-1.48.36 3.09 3.09 0 0 0-1.44 1 6 6 0 0 0-1 2.07 9.21 9.21 0 0 0-.38 2.65 3 3 0 0 0 .53 1.92 1.81 1.81 0 0 0 1.51.67 2.56 2.56 0 0 0 1.47-.42 2.81 2.81 0 0 0 1-1.29 5 5 0 0 0 .36-1.94 2.47 2.47 0 0 0-.48-1.63 1.65 1.65 0 0 0-1.33-.56 2.91 2.91 0 0 0-2.26 1.24 6.44 6.44 0 0 1 .88-2.16 2.71 2.71 0 0 1 1.32-1.09 21 21 0 0 1 2.45-.56l.36-.07-.07-.49q-.44.11-1.44.3zm-2.49 3.7a2.13 2.13 0 0 1 1.12-.33 1.2 1.2 0 0 1 1 .43 2.08 2.08 0 0 1 .36 1.33 4.6 4.6 0 0 1-.26 1.6 2.45 2.45 0 0 1-.75 1.09 1.78 1.78 0 0 1-1.15.39 1.33 1.33 0 0 1-1.17-.52 2.81 2.81 0 0 1-.37-1.62v-.68q0-.41.07-.61a4.53 4.53 0 0 1 1.16-1.07zM102.45 113.73l-.6 2.77a5.75 5.75 0 0 1-.57 1.59 3 3 0 0 1-.94 1.07 2.08 2.08 0 0 1-1.18.37 1.13 1.13 0 0 1-.79-.25.86.86 0 0 1-.27-.67 4.9 4.9 0 0 1 .13-.9l.87-4h-.57l-.86 3.96a5.35 5.35 0 0 0-.13 1 1.33 1.33 0 0 0 .38 1 1.62 1.62 0 0 0 1.13.35 2.81 2.81 0 0 0 2.3-1.26l-.16 1.17h.55l1.32-6.2h-.56zM106.74 113.93a2.23 2.23 0 0 0-.82.82 10.49 10.49 0 0 0-.83 2 16.08 16.08 0 0 1-.69 1.78 2.21 2.21 0 0 1-.54.75 1.09 1.09 0 0 1-.7.22 1.25 1.25 0 0 1-.34 0v.51a1.11 1.11 0 0 0 .35 0 1.61 1.61 0 0 0 .92-.25 2.31 2.31 0 0 0 .69-.82 13.71 13.71 0 0 0 .8-2 11.54 11.54 0 0 1 .7-1.75 2.1 2.1 0 0 1 .64-.76 1.55 1.55 0 0 1 .87-.23 2.69 2.69 0 0 1 .42 0l-1.23 5.74h.55l1.32-6.15a5.33 5.33 0 0 0-1-.1 2.39 2.39 0 0 0-1.11.24zM112.97 113.67a2.47 2.47 0 0 0-1.56.56 3.74 3.74 0 0 0-1.11 1.51 5 5 0 0 0-.4 2 2.54 2.54 0 0 0 .55 1.74 2 2 0 0 0 1.54.62 3.8 3.8 0 0 0 1.7-.39v-.54a3.48 3.48 0 0 1-1.57.42 1.51 1.51 0 0 1-1.21-.49 2.15 2.15 0 0 1-.42-1.43 4.23 4.23 0 0 1 0-.56h.25a5.62 5.62 0 0 0 2.77-.54 1.72 1.72 0 0 0 .93-1.57 1.21 1.21 0 0 0-.39-.95 1.49 1.49 0 0 0-1.08-.38zm-2.1 2.91h-.28a3.85 3.85 0 0 1 .93-1.76 1.92 1.92 0 0 1 1.39-.66.9.9 0 0 1 .66.25.86.86 0 0 1 .25.63q-.01 1.5-2.96 1.5zM122.47 113.67a2.31 2.31 0 0 0-1.27.38 3.28 3.28 0 0 0-1 1.11 1.74 1.74 0 0 0-.34-1.11 1.15 1.15 0 0 0-.93-.38 2.44 2.44 0 0 0-1.21.33 3.2 3.2 0 0 0-1 1l.19-1.2h-.46l-1.32 6.2h.56l.57-2.71a6.12 6.12 0 0 1 .57-1.64 3.09 3.09 0 0 1 .91-1.07 1.92 1.92 0 0 1 1.14-.39.85.85 0 0 1 .88 1 6.28 6.28 0 0 1-.14.92l-.84 3.84h.58l.62-3a4.5 4.5 0 0 1 1-2.07 2.06 2.06 0 0 1 1.58-.78.85.85 0 0 1 .92.92 5.52 5.52 0 0 1-.14 1l-.85 3.88h.57l.87-3.93q.1-.52.11-.68v-.32a1.31 1.31 0 0 0-.37-1 1.46 1.46 0 0 0-1.2-.3zM128.28 113.61a2.66 2.66 0 0 0-1.6.51 3.48 3.48 0 0 0-1.12 1.47 5 5 0 0 0-.42 2 2.64 2.64 0 0 0 .54 1.79 2 2 0 0 0 1.59.62 2.7 2.7 0 0 0 1.63-.51 3.4 3.4 0 0 0 1.11-1.49 5.41 5.41 0 0 0 .41-2.1 2.45 2.45 0 0 0-.56-1.71 2 2 0 0 0-1.58-.58zm1.23 4.2a3 3 0 0 1-.9 1.3 2 2 0 0 1-1.29.44q-1.61 0-1.61-2a4.69 4.69 0 0 1 .34-1.77 3 3 0 0 1 .9-1.28 2 2 0 0 1 1.27-.45 1.51 1.51 0 0 1 1.2.47 2 2 0 0 1 .42 1.35 5.16 5.16 0 0 1-.33 1.94zM136.19 116.26a1.51 1.51 0 0 0 .42-1.1 1.4 1.4 0 0 0-.46-1.11 1.94 1.94 0 0 0-1.31-.4 2.88 2.88 0 0 0-1.67.51 3.41 3.41 0 0 0-1.16 1.42 4.63 4.63 0 0 0-.42 2 2.72 2.72 0 0 0 .58 1.87 2.14 2.14 0 0 0 1.69.65 3.17 3.17 0 0 0 1.3-.24 1.91 1.91 0 0 0 .83-.67 1.69 1.69 0 0 0 .29-1 1.18 1.18 0 0 0-.33-.86 1.62 1.62 0 0 0-.93-.44 2.28 2.28 0 0 0 1.17-.63zm-.51 2a1.15 1.15 0 0 1-.46 1 2.05 2.05 0 0 1-1.28.35 1.73 1.73 0 0 1-1.34-.5 2.09 2.09 0 0 1-.46-1.46v-.42h2q1.54-.08 1.54.98zm-2.11-1.59h-1.37a3.4 3.4 0 0 1 .93-1.83 2.29 2.29 0 0 1 1.65-.69 1.31 1.31 0 0 1 .92.29 1 1 0 0 1 .32.8 1.18 1.18 0 0 1-.62 1.07 3.63 3.63 0 0 1-1.83.36z"/><path class="ecls-1" d="M52.53 94.46l-3.11.13a11.76 11.76 0 0 0-5.35 1.17 3.37 3.37 0 0 0-1.6 3.09 3.32 3.32 0 0 0 1 2.6 4.16 4.16 0 0 0 2.89.93 5.67 5.67 0 0 0 6.14-6.16v-1.75zM79.79 102.38a5.67 5.67 0 0 0 6.14-6.16v-1.75l-3.11.13a11.76 11.76 0 0 0-5.35 1.17 3.37 3.37 0 0 0-1.6 3.09 3.32 3.32 0 0 0 1 2.6 4.16 4.16 0 0 0 2.92.92zM3.32 95.77a3.37 3.37 0 0 0-1.6 3.09 3.32 3.32 0 0 0 1 2.6 4.16 4.16 0 0 0 2.89.93 5.67 5.67 0 0 0 6.14-6.16v-1.75l-3.11.13a11.76 11.76 0 0 0-5.32 1.16zM107.61 86.82a5.33 5.33 0 0 0-4.13 1.7 8 8 0 0 0-1.82 4.89h11a7.77 7.77 0 0 0-1.34-4.84 4.43 4.43 0 0 0-3.71-1.75z"/><path class="ecls-2" d="M13.38 91.67a6.69 6.69 0 0 0-1.45-4.75 5.78 5.78 0 0 0-4.38-1.52 13.57 13.57 0 0 0-5.8 1.38l.61 1.41a11.12 11.12 0 0 1 5.13-1.38 4 4 0 0 1 3.33 1.29 6.05 6.05 0 0 1 1 3.83v1.18l-3.39.1a11.8 11.8 0 0 0-6.28 1.52 4.59 4.59 0 0 0-2.17 4 4.8 4.8 0 0 0 1.46 3.72 5.79 5.79 0 0 0 4.08 1.34 7.37 7.37 0 0 0 3.35-.71 8.46 8.46 0 0 0 2.76-2.43h.11l.41 2.82h1.2v-11.8zm-1.64 4.55a5.67 5.67 0 0 1-6.14 6.16 4.16 4.16 0 0 1-2.89-.93 3.32 3.32 0 0 1-1-2.6 3.37 3.37 0 0 1 1.6-3.09 11.76 11.76 0 0 1 5.35-1.17l3.11-.13v1.75zM25.29 97.79q-.7 1.87-1.38 4.1h-.1a37.3 37.3 0 0 0-1.38-4.06l-4.59-12.16h-1.67l6.88 17.81h1.64l6.88-17.81H29.9zM34.55 85.71h1.62v17.81h-1.62zM52.53 100.67l.41 2.82h1.2V91.67a6.69 6.69 0 0 0-1.45-4.75 5.78 5.78 0 0 0-4.38-1.52 13.57 13.57 0 0 0-5.8 1.38l.61 1.41a11.12 11.12 0 0 1 5.13-1.38 4 4 0 0 1 3.33 1.29 6.05 6.05 0 0 1 1 3.83v1.18l-3.39.1a11.8 11.8 0 0 0-6.28 1.52 4.59 4.59 0 0 0-2.17 4 4.8 4.8 0 0 0 1.46 3.72 5.79 5.79 0 0 0 4.08 1.34 7.37 7.37 0 0 0 3.35-.71 8.46 8.46 0 0 0 2.76-2.43h.13zm-1.65 0a6.11 6.11 0 0 1-4.5 1.63 4.16 4.16 0 0 1-2.89-.93 3.32 3.32 0 0 1-1-2.6 3.37 3.37 0 0 1 1.6-3.09 11.76 11.76 0 0 1 5.35-1.17l3.11-.13v1.75a6.09 6.09 0 0 1-1.66 4.62zM69.13 102.57a4.23 4.23 0 0 0 1.82-3.68 3.87 3.87 0 0 0-.55-2.08 5.1 5.1 0 0 0-1.65-1.58 19.07 19.07 0 0 0-3.51-1.56 13.83 13.83 0 0 1-3.87-1.87 2.77 2.77 0 0 1-1-2.23 2.21 2.21 0 0 1 1.28-2 7 7 0 0 1 3.46-.72 12.83 12.83 0 0 1 4.86 1.08l.61-1.47a14 14 0 0 0-5.47-1.08 8.16 8.16 0 0 0-4.69 1.16 3.65 3.65 0 0 0-1.68 3.13 4 4 0 0 0 .55 2.14 5.18 5.18 0 0 0 1.63 1.57 20.47 20.47 0 0 0 3.75 1.66 12 12 0 0 1 3.58 1.8 2.85 2.85 0 0 1 1.09 2.26 2.66 2.66 0 0 1-1.37 2.33 7.47 7.47 0 0 1-4 .88 12.51 12.51 0 0 1-5.67-1.34v1.75a12.3 12.3 0 0 0 5.67 1.1 8.85 8.85 0 0 0 5.16-1.25zM79.74 103.85a7.37 7.37 0 0 0 3.35-.71 8.46 8.46 0 0 0 2.76-2.43h.13l.41 2.82h1.2V91.67a6.69 6.69 0 0 0-1.45-4.75 5.78 5.78 0 0 0-4.38-1.52 13.57 13.57 0 0 0-5.8 1.38l.61 1.41a11.12 11.12 0 0 1 5.13-1.38 4 4 0 0 1 3.33 1.29 6.05 6.05 0 0 1 1 3.83v1.18l-3.39.1a11.8 11.8 0 0 0-6.28 1.52 4.59 4.59 0 0 0-2.17 4 4.8 4.8 0 0 0 1.46 3.72 5.79 5.79 0 0 0 4.09 1.4zm-2.22-8.08a11.76 11.76 0 0 1 5.35-1.17l3.11-.13v1.75a5.67 5.67 0 0 1-6.14 6.16 4.16 4.16 0 0 1-2.89-.93 3.32 3.32 0 0 1-1-2.6 3.37 3.37 0 0 1 1.52-3.08zM93.3 78.03h1.62v25.49H93.3zM107.61 85.37a6.92 6.92 0 0 0-5.65 2.56 10.44 10.44 0 0 0-2.1 6.82 9.61 9.61 0 0 0 2.17 6.7 7.76 7.76 0 0 0 6.05 2.39 15.49 15.49 0 0 0 2.82-.24 13 13 0 0 0 2.78-.89v-1.47a16.26 16.26 0 0 1-2.92.92 14.91 14.91 0 0 1-2.68.21 6 6 0 0 1-4.81-1.93 8.42 8.42 0 0 1-1.71-5.6h12.83v-1.31a9.06 9.06 0 0 0-1.82-6 6.1 6.1 0 0 0-4.96-2.16zm-5.95 8a8 8 0 0 1 1.82-4.89 5.33 5.33 0 0 1 4.13-1.7 4.43 4.43 0 0 1 3.72 1.74 7.77 7.77 0 0 1 1.34 4.84h-11zM128.15 95.23a19.07 19.07 0 0 0-3.51-1.56 13.83 13.83 0 0 1-3.87-1.87 2.77 2.77 0 0 1-1-2.23 2.21 2.21 0 0 1 1.28-2 7 7 0 0 1 3.46-.72 12.83 12.83 0 0 1 4.86 1.08l.61-1.47a14 14 0 0 0-5.47-1.08 8.16 8.16 0 0 0-4.69 1.16 3.65 3.65 0 0 0-1.68 3.13 4 4 0 0 0 .55 2.14 5.18 5.18 0 0 0 1.63 1.57 20.48 20.48 0 0 0 3.75 1.66 12 12 0 0 1 3.58 1.8 2.85 2.85 0 0 1 1.09 2.26 2.66 2.66 0 0 1-1.37 2.33 7.47 7.47 0 0 1-4 .88 12.51 12.51 0 0 1-5.67-1.34v1.75a12.3 12.3 0 0 0 5.67 1.1 8.85 8.85 0 0 0 5.16-1.29 4.23 4.23 0 0 0 1.82-3.68 3.86 3.86 0 0 0-.55-2.08 5.1 5.1 0 0 0-1.65-1.54zM146.9 86.17a7.55 7.55 0 0 0-2.34 2.76h-.11l-.17-3.26h-1.38v17.81h1.62v-9.81a7.88 7.88 0 0 1 1.46-4.88 4.49 4.49 0 0 1 3.73-1.93 9.5 9.5 0 0 1 2.31.28l.31-1.56a14 14 0 0 0-2.42-.23 5.49 5.49 0 0 0-3.01.82zM168.18 85.67v9.83q0 3.62-1.5 5.23a6.12 6.12 0 0 1-4.68 1.61 4.56 4.56 0 0 1-3.51-1.22 5.63 5.63 0 0 1-1.13-3.91V85.67h-1.62V97.3q0 6.5 6.08 6.5 4.44 0 6.18-2.78h.1l.3 2.46h1.34V85.67h-1.61z"/><circle class="ecls-2" cx="35.36" cy="80.77" r="1.19"/><circle class="ecls-2" cx="135.93" cy="102.24" r="1.19"/><path class="ecls-2" d="M102.19 0H66.74a12 12 0 0 0-11.8 11.8v36.4A12 12 0 0 0 66.74 60h35.44c7.15 0 12.76-5.18 12.76-11.8V11.8c.01-6.13-6.07-11.8-12.75-11.8zm11.07 47.93c0 5.66-4.72 10.38-11.32 10.38H67.02a10.47 10.47 0 0 1-10.38-10.38V12.07a10.47 10.47 0 0 1 10.38-10.4h34.92c5.66 0 11.32 4.72 11.32 10.38v35.86z"/><path class="ecls-2" d="M86.84 16.73h-3.77a9.65 9.65 0 0 0-9.61 9.5V38.5a9.78 9.78 0 0 0 9.61 9.64h3.77a9.78 9.78 0 0 0 9.61-9.64V26.23a9.65 9.65 0 0 0-9.61-9.5zm5.63 16.54a6.18 6.18 0 0 1-6.44 6h-2.16a6.18 6.18 0 0 1-6.44-6v-6.55a6.18 6.18 0 0 1 6.44-6h2.16a6.18 6.18 0 0 1 6.44 6v6.55z"/><path class="ecls-2" d="M100.49 5.67h-31.9c-4.91 0-8 3.06-8 8v7h1.82c3.57 0 6.59 2.61 6.59 6v6.55c0 3.4-3 6-6.59 6h-1.82v7.07c0 4.91 3.06 8 8 8h31.9c5.72 0 8.79-3.06 8.79-8v-7.07h-1.82c-3.57 0-6.59-2.61-6.59-6v-6.55c0-3.4 3-6 6.59-6h1.82v-7c0-4.93-3.88-8-8.79-8zm-2.38 32.77a11.35 11.35 0 0 1-11.29 11.32h-3.74a11.35 11.35 0 0 1-11.29-11.32V26.28a11.23 11.23 0 0 1 11.29-11.17h3.74a11.23 11.23 0 0 1 11.29 11.17v12.16z"/><path class="ecls-2" d="M84.95 36.06h-.21c-2.48 0-4-1-4-3.62v-2.43a.85.85 0 0 0-.81-.89.84.84 0 0 0-.8.89v2.43c0 3.46 2.29 5.24 5.66 5.24h.18a.78.78 0 0 0 .79-.79.82.82 0 0 0-.81-.83z"/></symbol><symbol id="logo-horizontal" viewBox="0 0 247.58 60"><defs><style>.fcls-1{fill:#fff}.fcls-2{fill:none}</style></defs><title>[AS] Logo Landscape Invert</title><path class="fcls-1" d="M47.24 0H11.8A12 12 0 0 0 0 11.8v36.4A12 12 0 0 0 11.8 60h35.44C54.39 60 60 54.82 60 48.2V11.8C60 5.62 53.92 0 47.24 0zm11.07 47.93c0 5.66-4.72 10.38-11.32 10.38H12.07A10.47 10.47 0 0 1 1.69 47.93V12.07A10.47 10.47 0 0 1 12.07 1.69H47c5.66 0 11.32 4.72 11.32 10.38v35.86z"/><path class="fcls-1" d="M31.89 16.73h-3.77a9.65 9.65 0 0 0-9.61 9.5V38.5a9.78 9.78 0 0 0 9.61 9.64h3.77a9.78 9.78 0 0 0 9.61-9.64V26.23a9.65 9.65 0 0 0-9.61-9.5zm5.63 16.54a6.18 6.18 0 0 1-6.44 6h-2.16a6.18 6.18 0 0 1-6.44-6v-6.55a6.18 6.18 0 0 1 6.44-6h2.16a6.18 6.18 0 0 1 6.44 6v6.55z"/><path class="fcls-1" d="M45.54 5.67h-31.9c-4.91 0-8 3.06-8 8v7.07h1.82c3.57 0 6.59 2.61 6.59 6v6.55c0 3.4-3 6-6.59 6H5.64v7.07c0 4.91 3.06 8 8 8h31.9c5.72 0 8.79-3.06 8.79-8v-7.07h-1.82c-3.57 0-6.59-2.61-6.59-6v-6.55c0-3.4 3-6 6.59-6h1.82v-7.07c0-4.93-3.88-8-8.79-8zm-2.38 32.77a11.35 11.35 0 0 1-11.29 11.32h-3.74a11.35 11.35 0 0 1-11.29-11.32V26.28a11.23 11.23 0 0 1 11.29-11.17h3.74a11.23 11.23 0 0 1 11.29 11.17v12.16z"/><path class="fcls-1" d="M30 36.06h-.18c-2.48 0-4-1-4-3.62V30a.85.85 0 0 0-.81-.89.84.84 0 0 0-.8.89v2.43c0 3.46 2.29 5.24 5.66 5.24H30a.78.78 0 0 0 .79-.79.82.82 0 0 0-.79-.82z"/><path class="fcls-2" d="M130.32 29.66l-3.11.13a11.75 11.75 0 0 0-5.35 1.17 3.37 3.37 0 0 0-1.6 3.09 3.32 3.32 0 0 0 1 2.6 4.16 4.16 0 0 0 2.89.93 5.67 5.67 0 0 0 6.14-6.16v-1.75zM157.58 37.57a5.67 5.67 0 0 0 6.14-6.16v-1.75l-3.11.13a11.76 11.76 0 0 0-5.35 1.17 3.37 3.37 0 0 0-1.6 3.09 3.32 3.32 0 0 0 1 2.6 4.16 4.16 0 0 0 2.92.92zM81.11 31a3.37 3.37 0 0 0-1.6 3.09 3.32 3.32 0 0 0 1 2.6 4.16 4.16 0 0 0 2.89.93 5.67 5.67 0 0 0 6.14-6.16v-1.75l-3.11.13A11.75 11.75 0 0 0 81.11 31zM185.39 22a5.33 5.33 0 0 0-4.13 1.7 8 8 0 0 0-1.82 4.89h11a7.77 7.77 0 0 0-1.34-4.84 4.43 4.43 0 0 0-3.71-1.75z"/><path class="fcls-1" d="M91.17 26.88a6.69 6.69 0 0 0-1.45-4.75 5.78 5.78 0 0 0-4.38-1.52 13.57 13.57 0 0 0-5.8 1.38l.61 1.41a11.12 11.12 0 0 1 5.13-1.38 4 4 0 0 1 3.33 1.29 6.05 6.05 0 0 1 1 3.83v1.18l-3.39.1a11.8 11.8 0 0 0-6.28 1.52 4.59 4.59 0 0 0-2.17 4 4.8 4.8 0 0 0 1.46 3.72A5.79 5.79 0 0 0 83.31 39a7.37 7.37 0 0 0 3.35-.71 8.46 8.46 0 0 0 2.76-2.43h.13l.41 2.82h1.2v-11.8zm-1.61 4.54a5.67 5.67 0 0 1-6.14 6.16 4.16 4.16 0 0 1-2.89-.93 3.32 3.32 0 0 1-1-2.6 3.37 3.37 0 0 1 1.6-3.09 11.75 11.75 0 0 1 5.35-1.17l3.11-.13v1.75zM103.08 33q-.7 1.87-1.38 4.1h-.1a37.27 37.27 0 0 0-1.38-4.06l-4.6-12.11H94l6.88 17.81h1.64l6.88-17.81h-1.67zM112.34 20.91h1.62v17.81h-1.62zM130.32 35.9l.41 2.82h1.2V26.88a6.69 6.69 0 0 0-1.45-4.75 5.78 5.78 0 0 0-4.38-1.52 13.57 13.57 0 0 0-5.8 1.38l.61 1.41A11.12 11.12 0 0 1 126 22a4 4 0 0 1 3.33 1.29 6.05 6.05 0 0 1 1 3.83v1.18l-3.39.1a11.8 11.8 0 0 0-6.28 1.52 4.59 4.59 0 0 0-2.17 4 4.8 4.8 0 0 0 1.46 3.72 5.79 5.79 0 0 0 4.08 1.34 7.37 7.37 0 0 0 3.35-.71 8.46 8.46 0 0 0 2.76-2.43h.13zm-1.65 0a6.11 6.11 0 0 1-4.5 1.63 4.16 4.16 0 0 1-2.89-.93 3.32 3.32 0 0 1-1-2.6 3.37 3.37 0 0 1 1.6-3.09 11.75 11.75 0 0 1 5.35-1.17l3.11-.13v1.75a6.09 6.09 0 0 1-1.66 4.58zM146.92 37.76a4.23 4.23 0 0 0 1.82-3.68 3.87 3.87 0 0 0-.55-2.08 5.1 5.1 0 0 0-1.65-1.58 19.07 19.07 0 0 0-3.51-1.56 13.82 13.82 0 0 1-3.87-1.87 2.77 2.77 0 0 1-1-2.23 2.21 2.21 0 0 1 1.28-2 7 7 0 0 1 3.46-.72 12.83 12.83 0 0 1 4.86 1.08l.61-1.47a14.05 14.05 0 0 0-5.47-1.08 8.16 8.16 0 0 0-4.69 1.16 3.65 3.65 0 0 0-1.68 3.16 4 4 0 0 0 .55 2.14 5.18 5.18 0 0 0 1.63 1.57 20.48 20.48 0 0 0 3.75 1.66 12 12 0 0 1 3.58 1.8 2.85 2.85 0 0 1 1.09 2.26 2.66 2.66 0 0 1-1.37 2.33 7.47 7.47 0 0 1-4 .88 12.51 12.51 0 0 1-5.67-1.34V38a12.3 12.3 0 0 0 5.67 1.1 8.85 8.85 0 0 0 5.16-1.34zM157.48 39a7.37 7.37 0 0 0 3.35-.71 8.46 8.46 0 0 0 2.76-2.43h.13l.41 2.82h1.2v-11.8a6.69 6.69 0 0 0-1.45-4.75 5.78 5.78 0 0 0-4.38-1.52 13.57 13.57 0 0 0-5.8 1.38l.61 1.41a11.12 11.12 0 0 1 5.13-1.38 4 4 0 0 1 3.33 1.29 6.05 6.05 0 0 1 1 3.83v1.18l-3.39.1a11.8 11.8 0 0 0-6.28 1.52 4.59 4.59 0 0 0-2.17 4 4.8 4.8 0 0 0 1.46 3.72 5.79 5.79 0 0 0 4.09 1.34zm-2.22-8a11.76 11.76 0 0 1 5.35-1.17l3.11-.13v1.75a5.67 5.67 0 0 1-6.14 6.16 4.16 4.16 0 0 1-2.89-.93 3.32 3.32 0 0 1-1-2.6 3.37 3.37 0 0 1 1.57-3.08zM171.09 13.23h1.62v25.49h-1.62zM185.39 20.57a6.92 6.92 0 0 0-5.65 2.56 10.44 10.44 0 0 0-2.1 6.82 9.61 9.61 0 0 0 2.17 6.7 7.76 7.76 0 0 0 6.05 2.39 15.49 15.49 0 0 0 2.82-.24 13 13 0 0 0 2.78-.89v-1.47a16.25 16.25 0 0 1-2.92.92 14.91 14.91 0 0 1-2.68.21 6 6 0 0 1-4.81-1.93 8.42 8.42 0 0 1-1.71-5.6h12.83v-1.31a9.06 9.06 0 0 0-1.82-6 6.1 6.1 0 0 0-4.96-2.16zm-5.95 8a8 8 0 0 1 1.82-4.89 5.33 5.33 0 0 1 4.13-1.7 4.43 4.43 0 0 1 3.72 1.74 7.77 7.77 0 0 1 1.34 4.84h-11zM205.94 30.42a19.07 19.07 0 0 0-3.51-1.56 13.82 13.82 0 0 1-3.87-1.87 2.77 2.77 0 0 1-1-2.23 2.21 2.21 0 0 1 1.28-2 7 7 0 0 1 3.46-.72 12.83 12.83 0 0 1 4.86 1.08l.61-1.47a14.05 14.05 0 0 0-5.47-1.08 8.16 8.16 0 0 0-4.69 1.16 3.65 3.65 0 0 0-1.68 3.16 4 4 0 0 0 .55 2.14 5.18 5.18 0 0 0 1.63 1.57 20.48 20.48 0 0 0 3.75 1.66 12 12 0 0 1 3.58 1.8 2.85 2.85 0 0 1 1.09 2.26 2.66 2.66 0 0 1-1.37 2.33 7.47 7.47 0 0 1-4 .88 12.51 12.51 0 0 1-5.67-1.34V38a12.3 12.3 0 0 0 5.67 1.1 8.85 8.85 0 0 0 5.16-1.29 4.23 4.23 0 0 0 1.82-3.68 3.87 3.87 0 0 0-.55-2.08 5.1 5.1 0 0 0-1.65-1.63zM224.69 21.37a7.55 7.55 0 0 0-2.34 2.76h-.11l-.16-3.21h-1.38v17.81h1.62V28.9a7.88 7.88 0 0 1 1.46-4.88 4.49 4.49 0 0 1 3.73-1.93 9.51 9.51 0 0 1 2.31.28l.31-1.56a14 14 0 0 0-2.42-.23 5.49 5.49 0 0 0-3.02.79zM246 20.92v9.83q0 3.62-1.5 5.23a6.12 6.12 0 0 1-4.68 1.61 4.56 4.56 0 0 1-3.51-1.22 5.63 5.63 0 0 1-1.13-3.91V20.92h-1.6v11.63q0 6.5 6.08 6.5 4.44 0 6.18-2.79h.1l.29 2.46h1.38v-17.8H246z"/><circle class="fcls-1" cx="113.15" cy="15.98" r="1.19"/><circle class="fcls-1" cx="213.72" cy="37.44" r="1.19"/></symbol><symbol id="map" viewBox="0 0 71.400002 60.325484"><g transform="translate(-210.014 -482.2)" id="glayer1"><g transform="translate(195.714 462.3)" id="gg3354"><g id="gg3339"><path d="M61.6 19.9c-4.6 0-8.4 2.9-9.9 6.9l-12.9-4.5c-.1-.1-.3-.2-.5-.2s-.4.1-.5.2l-22.7 8c-.1 0-.1 0-.2.1-.3.1-.6.5-.6 1v48.3c.1.4.5.6.8.5L38.4 72c.1 0 .1.1.2.1l22.7 8c.1 0 .1.1.2.1h.2c.3 0 .6-.1.9-.3l22.6-8c.3-.1.5-.4.5-.7V22.8c0-.4-.4-.8-.9-.8-.1 0-.1 0-.2.1l-13.1 4.6c-1.5-4-5.3-6.8-9.9-6.8zm0 1.6c5 0 9 4 9.1 9 0 2.6-1.1 4.2-2.6 5.8-1.5 1.6-3.5 3-4.8 5.1-.8 1.3-1.4 2.9-1.7 4.6-.4-1.8-.9-3.3-1.7-4.6-1.3-2.1-3.2-3.5-4.8-5.1-1.5-1.6-2.6-3.2-2.6-5.8.1-5 4.1-9 9.1-9zm-24.1 2.4v46.7l-21.7 7.6V31.6l21.7-7.7zm1.6 0l12.1 4.3c-.2.7-.3 1.5-.3 2.2-.1 3.1 1.4 5.2 3 6.9 1.6 1.7 3.5 3.1 4.6 4.9 1.6 2.6 2.1 5.8 2.1 11.1 0 .4.4.8.8.8h.4c.4 0 .8-.4.8-.8 0-5.3.5-8.6 2.1-11.1 1.1-1.8 3-3.2 4.6-4.9 1.7-1.7 3.1-3.8 3-6.9 0-.8-.1-1.5-.3-2.2l12.1-4.3v46.6l-21.7 7.7V61.6c0-.4-.4-.8-.8-.8s-.8.4-.8.8v16.6L39 70.5l.1-46.6zm22.5 2.2c-2.4 0-4.3 2-4.3 4.3 0 2.4 1.9 4.3 4.3 4.3s4.3-1.9 4.3-4.3c.1-2.3-1.9-4.3-4.3-4.3zm0 1.6c1.5 0 2.8 1.2 2.8 2.7 0 1.5-1.2 2.7-2.8 2.7-1.6 0-2.7-1.2-2.7-2.7 0-1.5 1.2-2.7 2.7-2.7z" id="gpath3341"/></g></g></g><style id="gstyle3337">.st0{display:none;enable-background:new}.st1{font-family:'Arial-BoldMT'}.st2{font-size:5px}</style></symbol><symbol id="plain" viewBox="0 0 70.000002 70.099998"><g transform="translate(-202.143 -285.884)" id="hlayer1"><g transform="translate(187.143 270.984)" id="hg3501"><g id="hg3483"><g id="hg3485"><g id="ha"><path d="M83.6 25.2c1-1 1.4-3.4 1.4-7.3 0-.7-.3-1.4-.8-2.1-.6-.6-1.3-.9-2.1-.9-3.9 0-6.3.5-7.3 1.5L63.2 29.6H17.9L15 34l32.1 10.3-8.8 11.6H25.2l-4.4 4.4 8.8 3v4.3c0 .8.3 1.5.9 2.1.7.6 1.4.9 2 .9h4.4l2.9 8.8 4.4-4.4V61.7L55.8 53 66 85l4.3-2.9V36.9l13.3-11.7z" id="hpath3488"/></g></g></g></g></g><style id="hstyle3481">.st0{display:none;enable-background:new}.st1{font-family:'Arial-BoldMT'}.st2{font-size:5px}</style></symbol><symbol id="search" viewBox="0 0 90.049997 89.972972"><g transform="translate(-183.546 -373.09)" id="ilayer1"><g transform="translate(178.596 368.063)" id="ig3533"><path d="M54 40.8c-1.3 0-2.3-1-2.3-2.3 0-3.5-1.4-6.9-3.9-9.4s-5.9-3.9-9.4-3.9c-1.2 0-2.2-1-2.2-2.3 0-1.2 1-2.3 2.2-2.3 4.8 0 9.3 1.9 12.6 5.2 3.4 3.4 5.2 7.9 5.2 12.6.1 1.4-1 2.4-2.2 2.4zm41 46.1L87 95 64.6 72.6l2.4-2.4-6.8-6.8c-4.2 3.6-9 6.1-14.1 7.3-10.9 2.6-22.9-.2-31.4-8.8-13-13-13-34.2 0-47.2 2.6-2.6 5.5-4.5 8.6-6 8.6-4.3 18.5-4.9 27.4-1.4 4.1 1.6 8 4.1 11.3 7.4C74.5 27.2 74.9 47 63.4 60.1l6.8 6.8 2.4-2.4L95 86.9zM57.2 19.6c-5-5-11.7-7.8-18.8-7.8-7.1 0-13.7 2.7-18.8 7.8-5 5-7.8 11.7-7.8 18.8 0 7.1 2.8 13.8 7.8 18.8S31.3 65 38.4 65c7.1 0 13.8-2.7 18.8-7.8 10.3-10.5 10.3-27.3 0-37.6z" id="ipath3520"/></g></g><style id="istyle3518">.st0{display:none;enable-background:new}.st1{font-family:'Arial-BoldMT'}.st2{font-size:5px}</style></symbol><symbol viewBox="0 0 46.000001 45.005017" id="thumbup"><path d="M44.037 26.43c.592.698.963 1.59.963 2.576a3.98 3.98 0 0 1-1.963 3.424A3.97 3.97 0 0 1 44 35.006c0 1.462-.793 2.726-1.963 3.424.592.697.963 1.59.963 2.575a4 4 0 0 1-4 4l-23.404-.002v-.024a5.46 5.46 0 0 1-3.975-1.977H5c-2.762 0-5-5.373-5-12s2.238-12 5-12h8.387L21 8.005v-5c.54-3.262 3-3 3-3 2.212 0 3 1 3 1 3 3 3 8 3 8 0 6.608-3 10-3 10h15a4 4 0 0 1 4 4 3.986 3.986 0 0 1-1.963 3.426zM5 21.004c-.77 0-3 3.438-3 10 0 6.562 2.23 10 3 10h5.578c-.056-.198-.12-.393-.152-.6C9.834 37.53 9 32.81 9 29.003c0-4.043 2.203-6.897 3-8h.002H5zm37 .002H22.56l2.942-3.325C25.527 17.65 28 14.696 28 9.01c0-.04-.054-4.23-2.414-6.59l-.117-.105c-.674-.423-1.6-.314-1.6-.314-.533 0-.77.687-.87 1.186V8.63l-9.38 13.543-.108.152C12.696 23.445 11 25.778 11 29.003c0 3.714.867 8.484 1.398 11.073a3.496 3.496 0 0 0 3.285 2.904L39 43.005c1.103 0 2-.897 2-2 0-.584-.266-1.02-.487-1.28l-1.53-1.802 2.03-1.21A1.98 1.98 0 0 0 42 35.005c0-.584-.266-1.02-.488-1.283l-1.528-1.803 2.03-1.21A1.976 1.976 0 0 0 43 29.007c0-.584-.266-1.02-.487-1.28l-1.53-1.802 2.03-1.21A1.98 1.98 0 0 0 44 23.005c0-1.104-.897-2-2-2zM6.5 39.003a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" clip-rule="evenodd" fill-rule="evenodd"/></symbol></svg>
+
+    <!-- content -->
+    <div class="content" role="main">
+      <!-- present -->
+      <div class="present b-lazy" data-src="img/present-bg.jpg">
+        <div class="container">
+          <div class="present__logo">
+            <img src="https://greencard-sa.com/public/uploads/all/ZJCVPmmKs9oKZSEmjF0deaPHEBdXA4tzH8ZUxqsV.png" style="
+    width: auto;
+    height: 100px;
+        margin: 37px;" class="logo" id="logo-top">
+        
+            </img>
+            
+
+          </div>
+          
+          <h1>Cheap flights from major airlines and agencies
+ </h1>
+          <span class="subtitle"></span>
+          <div class="present__fix-height-wrap">
+            <div class="present__form" id="present__form"></div>
+            <ul class="present__list">
+              <li class="present__list__title show-xs"><strong>Search for profitable offers from</strong></li>
+              <li>
+                <span class="present__icon">
+                  <svg class="icon-plain">
+                    <use xlink:href="#plain" />
+                  </svg>
+                </span>
+                <strong>728</strong>
+                <span>airlines of the world</span>
+              </li>
+              <li>
+                <span class="present__icon">
+                  <svg class="icon-deal">
+                    <use xlink:href="#deal" />
+                  </svg>
+                </span>
+                <strong>45</strong>
+                <span>various agencies</span>
+              </li>
+              <li>
+                <span class="present__icon">
+                  <svg class="icon-search">
+                    <use xlink:href="#search" />
+                  </svg>
+                </span>
+                <strong>5</strong>
+                <span>booking systems</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- present end -->
+
+      <!-- calendar -->
+      <div class="calendar">
+        <div class="container">
+          <h2>Low price calendar
+</h2>
+          <span class="subtitle">The most profitable flights for the year ahead!</span>
+          <ul class="calendar__list">
+            <li>
+              <div class="calendar__item">
+                <div class="calendar__img">
+                  <div class="table">
+                    <div class="cell">
+                      <span class="calendar__value">1</span>
+                      <svg class="icon-map">
+                        <use xlink:href="#map" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="calendar__desc">Choose direction
+</div>
+              </div>
+            </li>
+            <li>
+              <div class="calendar__item">
+                <div class="calendar__img">
+                  <div class="table">
+                    <div class="cell">
+                      <span class="calendar__value">2</span>
+                      <svg class="icon-arrows">
+                        <use xlink:href="#arrows" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="calendar__desc"> One way
+<br /> or round trip</div>
+              </div>
+            </li>
+            <li>
+              <div class="calendar__item">
+                <div class="calendar__img">
+                  <span class="calendar__value">3</span>
+                  <div class="table">
+                    <div class="cell">
+                      <svg class="icon-calendar">
+                        <use xlink:href="#calendar" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="calendar__desc">Decide<br /> on the duration of the trip
+</div>
+              </div>
+            </li>
+            <li>
+              <div class="calendar__item">
+                <div class="calendar__img">
+                  <div class="table">
+                    <div class="cell">
+                      <span class="calendar__value">4</span>
+                      <svg class="icon-thumbup">
+                        <use xlink:href="#thumbup" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="calendar__desc">The calendar will show<br /> the departure date with the best price</div>
+              </div>
+            </li>
+          </ul>
+          <div class="calendar__tooltip">
+            <div class="tooltip">Click here to change calendar options</div>
+          </div>
+          <div class="calendar__form" id="calendar__form">
+          </div>
+        </div>
+      </div>
+      <!-- calendar end -->
+
+      <!-- advantages -->
+      <div class="advantages b-lazy" data-src="img/advantages-bg.jpg">
+        <div class="container">
+          <div class="advantages__img b-lazy" data-src="img/advantages__img-bg.png"></div>
+          <div class="advantages__inner">
+            <h2 class="advantages__title"><strong class="reg">BUYING WITH GREENTRIP IS PROFITABLE</strong><span class="thin">, 5 REASONS:</span></h2>
+            <ol class="advantages__list">
+              <li>We find the best option for you, and you choose where to buy a ticket.
+</li>
+              <li>We do not charge commissions, set no markups, and do not take any remuneration from our users.</li> 
+              <li>We have a large database of partner companies, you have a huge selection of routes, promotions and discounts.</li> 
+              <li>The list of our partners includes only proven and reliable companies.</li> 
+              <li>You are always aware of the best prices. Choose a direction, subscribe to the newsletter and receive notification of price changes.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    
+      <!-- advantages end -->
+<div class="calendar" style="
+    background-color: yellow;
+">
+
+        <div class="container" style="color: black;">
+          <h2>Greentrips Tours Operators
+           </h2>
+          <span class="subtitle">Welcome in the most tours for the year ahead!</span>
+          
+          <div class="center" style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 200px; */
+    border: -1px solid green;
+    ">
+  <button onclick="location.href='https://greencard-sa.com/greentrip/tours';" style="
+    border-radius: 13px;
+    /* background-color: #4CAF50; */
+    /* border: none; */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    /* border: none; */
+    font: small-caps bold 18px/1 sans-serif;
+    background-color: #000000;
+">Greentrips Booking</button>
+</div> 
+        </div>
+          
+        </div>
+      <!-- popular -->
+      
+      <!-- popular end -->
+
+      <!-- choose 
+      <div class="choose b-lazy" data-src="img/choose-bg.jpg">
+        <div class="container">
+          <h2 class="reg">Select your destination city, travel dates, number of passengers and click<strong> "Find Tickets"</strong></h2>
+          <div class="choose__form" id="choose__form">
+          </div>
+        </div>
+      </div> 
+  choose end -->
+    </div>
+    <!-- content end -->
+
+    <!-- footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__logo">
+          <a href="#" class="logo" id="logo-bottom">
+           
+          </a>
+        </div>
+        <i class="footer__text"><span class="hide-xs">&nbsp;&nbsp;&nbsp;</span>© 2021-2022 GreenCard SA. All Rights Reserved</i>
+      </div>
+    </footer>
+    <!-- footer end -->
+  </div>
+  <!-- wrapper end -->
+
+  <!-- SCRIPT LINKS -->
+
+  <!-- Jquery library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <!-- Widgets -->
+  <script src="js/widgets.js"></script>
+
+  <!-- Main functions -->
+  <script src="js/functions.js"></script>
+</body>
+
+</html>
+<!-- footer end -->
